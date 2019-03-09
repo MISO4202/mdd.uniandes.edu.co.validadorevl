@@ -1,0 +1,6 @@
+context Modulo{
+	constraint TieneInicio {		
+		check :  self.flujos.exists(f|f.desde.isTypeOf(Inicio))
+	    message : 'El módulo '+self.name +' debe tener un flujo desde inicio'
+	}
+}

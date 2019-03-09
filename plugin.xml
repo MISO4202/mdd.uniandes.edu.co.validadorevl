@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            categoryId="mdd.uniandes.edu.co.validadorevl.commands.category"
+            id="mdd.uniandes.edu.co.validadorevl.commands.validateModel"
+            name="EVL Validation Model">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="mdd.uniandes.edu.co.validadorevl.handlers.ValidationHandler"
+            commandId="mdd.uniandes.edu.co.validadorevl.commands.validateModel">
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.bindings">
+      <key
+            commandId="mdd.uniandes.edu.co.validadorevl.commands.validateModel"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            contextId="org.eclipse.ui.contexts.window"
+            sequence="M1+6">
+      </key>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="popup:org.eclipse.sirius.ui.tools.views.model.explorer#PopupMenu?after=additions">
+        <command
+              commandId="mdd.uniandes.edu.co.validadorevl.commands.validateModel"
+              id="mdd.uniandes.edu.co.validadorevl.popups.validateModel"
+              mnemonic="S">
+ 
+                    <visibleWhen>
+			           <with variable="activeMenuSelection">
+			            <iterate
+			                 ifEmpty="false">
+			             <adapt type="org.eclipse.core.resources.IResource">
+			               <test property="org.eclipse.core.resources.name" value="*.mydsl" />
+			             </adapt>
+			            </iterate>
+			           </with>
+     			</visibleWhen>
+        </command>
+      </menuContribution>
+   </extension>
+
+</plugin>
+
